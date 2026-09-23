@@ -3,10 +3,8 @@ package br.com.etechoracio.ingresso.controller;
 import br.com.etechoracio.ingresso.dto.SalaResponseDTO;
 import br.com.etechoracio.ingresso.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,10 @@ public class SalaController {
     @GetMapping
     public List<SalaResponseDTO> listar() {
         return service.listarAtivas();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SalaResponseDTO> buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SalaService {
@@ -17,5 +18,9 @@ public class SalaService {
 
     public List<SalaResponseDTO> listarAtivas() {
         return mapper.toDTOList(repository.findByDataExclusaoIsNull());
+    }
+
+    public Optional<SalaResponseDTO> buscarPorId(Long id) {
+        return repository.findByIdAndDataExclusaoIsNull(id).map(mapper::toDTO);
     }
 }

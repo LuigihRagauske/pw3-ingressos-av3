@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface SalaRepository extends JpaRepository<Sala, Long> {
     List<Sala> findByDataExclusaoIsNull();
+    Optional<Sala> findByIdAndDataExclusaoIsNull(Long id);
 }

@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SalaMapper {
     List<SalaResponseDTO> toDTOList(List<Sala> salas);
+    SalaResponseDTO toDTO(Sala sala);
 }
